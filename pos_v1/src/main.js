@@ -3,6 +3,8 @@
 //TODO: Please write code in this file.
 //TODO: Please write code in this
 
+
+
 var context = "";
 function List() {
 
@@ -37,11 +39,11 @@ function CalculateTotalItem(input_list){
 }
 function CalculatePromotionItem(list_total){
     var list_promotion=new List();
-    for(barcode in list_total)
+    for(barcode in list_total){
         var count=CalculateItemNumber(list_total[barcode]);
     if((!IsInPromotionItem(barcode))&&(count>0)) {
         list_promotion[barcode]=count;
-    }
+    }}
     return list_promotion;
 }
 /**
@@ -95,15 +97,21 @@ function PrintListPromotion(list_promotion){
 }
 function PrintResult(list_total,list_promotion){
     var allItems = loadAllItems()
-    var totalCost = 0,savedCost = 0;
+    var totalCost = 0;
+    var savedCost = 0;
     for(var location in allItems){
         if(allItems[location].barcode in list_total){
-            var barcode = allItems[i].barcode;
-            var count = list_promotion[barcode];
+            var barcode = allItems[location].barcode;
+            var count = list_total[barcode];
+
+
             if(list_promotion[barcode]){
                 count -= parseInt(list_promotion[barcode]);
+                savedCost += (allItems[location].price) *(list_promotion[barcode]);
             }
             totalCost += allItems[location].price * count;
+
+
         }
 
     }
